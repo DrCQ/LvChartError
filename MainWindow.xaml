@@ -1,0 +1,51 @@
+﻿<Window x:Name="window" x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LvChartError"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        DataContext="{Binding ElementName=window}"
+        mc:Ignorable="d"
+        Title="LiveChart Error" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="Green" BorderThickness="2" Padding="5" Margin="5" >
+            <lvc:CartesianChart Series="{Binding MySeriesCollection1, Mode=OneWay}" >
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding MyLabels1, Mode=OneWay}">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1" IsEnabled="False"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>            
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Padding="5" Margin="5">
+            <lvc:CartesianChart Series="{Binding MySeriesCollection2, Mode=OneWay}" >
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding MyLabels2, Mode=OneWay}">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1" IsEnabled="False"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis MinValue="10"/>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </Border>
+        <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Error Description" Padding="3" Margin="5">
+            <TextBlock Text="Setting the AxisY property MinValue to 10 leads to 'cutting' effect of the StackableBar for values between 10 and 20!" FontWeight="SemiBold"/>
+        </GroupBox>
+    </Grid>
+</Window>
